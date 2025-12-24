@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    transition: 0.3s;
+}
+
+.dark-mode {
+    background: #0d0d0d;
+    color: white;
+}
+
+.sidebar {
+    width: 230px;
+    background: #003;
+    height: 100vh;
+    color: white;
+    position: fixed;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.sidebar ul li.active, .sidebar ul li:hover {
+    background: #002;
+}
+
+.content {
+    margin-left: 260px;
+    padding: 20px;
+}
+
+.section { display: none; }
+.section.active { display: block; }
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.dark-mode .card {
+    background: #1a1a1a;
+}
+
+.analytics {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.btn {
+    background: #003;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+textarea, input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+dark-mode table td, dark-mode table th {
+    border-color: #444;
+}

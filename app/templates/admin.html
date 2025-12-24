@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock style %}
+
+{% block content %}
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <ul>
+            <li class="active" data-section="overview">Overview</li>
+            <li data-section="freelancers">Freelancers</li>
+            <li data-section="reports">Reports</li>
+            <li data-section="settings">Settings</li>
+            <a href="{{ url_for('auth.admin_logout') }}">
+                <button id="logoutBtn">Logout</button>
+            </a>
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- Overview -->
+        <section id="overview" class="section active">
+            <h1>Welcome back Miss Sheril</h1>
+            <div class="cards">
+                <div class="card">Total Freelancers: <span id="totalFreelancers">{{ total_users|length }}</span></div>
+                <div class="card">Pending Verifications: <span id="pendingCount">{{ total_users | selectattr("verified", "equalto", False) | list | length }}</span></div>
+                <div class="card">Active Sessions: <span id="activeSessions">52</span></div>
+            </div>
+
+            <div class="analytics">
+                <canvas id="performanceGraph"></canvas>
+                <canvas id="sessionsGraph"></canvas>
+            </div>
+        </section>
+
+        <!-- Freelancers -->
+        <section id="freelancers" class="section">
+            <h2>Freelancers Awaiting Verification</h2>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Email</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                    {% for user in awaiting_users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <button class="btn verifyBtn"
+                                    data-user-id="{{ user.id }}">
+                                Verify
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h2>Verified Freelancers</h2>
+            <table>
+                <thead>
+                    <tr><th>Name</th><th>Email</th></tr>
+                </thead>
+                <tbody>
+                    {% for user in verified_users %}
+                    <tr>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+
+        <!-- Reports -->
+        <section id="reports" class="section">
+            <h2>Write System Report</h2>
+            <textarea id="reportBox" placeholder="Write your report here..."></textarea>
+            <button class="btn" id="saveReport">Save Report</button>
+
+            <h2>Send Notification</h2>
+            <input type="text" id="notificationText" placeholder="Notification message">
+            <button class="btn" id="sendNotification">Send</button>
+        </section>
+
+        <!-- Settings -->
+        <section id="settings" class="section">
+            <h2>Theme</h2>
+            <button class="btn" id="themeToggle">Toggle Dark/Light Mode</button>
+
+            <h2>Account Configuration</h2>
+            <input type="text" placeholder="Change Username">
+            <input type="password" placeholder="Change Password">
+            <button class="btn">Update Account</button>
+        </section>
+    </div>
+{% endblock content %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock script %}

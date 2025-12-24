@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+{% endblock style %}
+
+{% block content %}
+    <!-- Header -->
+    <header>
+        <nav>
+            <h1>VeriKe Hub</h1>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h2>VeriKe Hub</h2>
+            <p>A Kenyan-based verification platform that authenticates freelancers’ identities, skills, and portfolios to protect clients and promote trusted digital work.</p>
+            <div class="buttons">
+                <a href="{{ url_for('auth.login') }}" class="col">
+                    <button class="gradient-btn">Login as Freelancer</button>
+                </a>
+
+                <a href="{{ url_for('auth.admin_login') }}" class="col">
+                    <button class="gradient-btn admin-btn">Login as Admin</button>
+                </a>
+            
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- AI Illustration -->
+            <img src="{{ url_for('static', filename='images/download.jpeg') }}" alt="AI Illustration">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h3>Key Features</h3>
+        <div class="feature-cards">
+            <div class="card">
+                <h4>Freelancer Verification</h4>
+                <p>Authenticate freelancers’ identity and portfolio credibility with a trusted badge and a verification certificate.</p>
+            </div>
+            <div class="card">
+                <h4>Admin Control</h4>
+                <p>Admins can review, approve, or reject verification requests efficiently.</p>
+            </div>
+            <div class="card">
+                
+                <h4>Platform Credibility</h4>
+                <p>It enhances trust by labeling verified freelancers, reducing fraud,fake profiles and misrepresentations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 VeriKe Hub | Kenyan Freelance Verification System</p>
+    </footer>
+{% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock script %}
+    

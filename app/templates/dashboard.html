@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock style %}
+
+{% block content %}
+<div class="sidebar">
+  <h2 class="logo">VeriKe Hub</h2>
+  <button class="side-btn active" data-tab="profile">👤 Profile</button>
+  <button class="side-btn" data-tab="projects">📁 Projects</button>
+  <button class="side-btn" data-tab="verification">🛂 Verification</button>
+  <button class="side-btn" data-tab="status">✔ Status</button>
+  <button class="side-btn" data-tab="settings">⚙ Settings</button>
+  <a href="{{ url_for('auth.logout') }}">
+    <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+  </a>
+</div>
+
+<div class="main">
+  <!-- PROFILE -->
+  <section class="tab-content active" id="profile">
+    <div class="profile-box">
+      <div class="profile-photo-container">
+        <img id="displayPhoto" class="profile-photo" src="{{ url_for('static', filename='images/profile/' + current_user.profile) }}">
+        <label for="photoInput" class="add-photo-label">+ Edit Profile Pic</label>
+        <input id="photoInput" type="file" accept="image/*" style="display:none;">
+      </div>
+      <div class="profile-info">
+        <p><strong>Name:</strong> <span id="displayName">{{ current_user.name }}</span></p>
+        <p><strong>Username:</strong> <span id="displayUsername">{{ current_user.username }}</span></p>
+        <p><strong>Email:</strong> <span id="displayEmail">{{ current_user.email }}</span></p>
+        <p><strong>Phone:</strong> <span id="displayPhone">
+          {% if current_user.phone == None %}
+              Not set    
+          {% else %}
+            {{ current_user.phone }}
+          {% endif %}
+        </span></p>
+        <button id="editProfileBtn" class="edit-btn">Edit</button>
+      </div>
+    </div>
+
+    <form id="profileEdit" class="edit-box hidden" method="post">
+      <input type="hidden" name="form_id" value="profile_edit_form">
+
+      <label>Name</label>
+      <input id="nameInput" name="name" type="text" value="{{ current_user.name }}">
+      <label>Username</label>
+      <input id="usernameInput" name="username" type="text" value="{{ current_user.username }}">
+      <label>Email</label>
+      <input id="emailInput" name="email" type="email" value="{{ current_user.email }}">
+      <label>Phone</label>
+      <input id="phoneInput" name="phone" type="text" value="{% if current_user.phone == None %}{% else %}{{ current_user.phone }}{% endif %}">
+      <button id="saveProfileBtn">Save</button>
+      <button id="cancelEditBtn" type="submit" class="cancel-btn">Cancel</button>
+    </form>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="tab-content" id="projects">
+    <form class="project-form" id="addProjectForm">
+      <input type="hidden" name="form_id" value="add_project_form">
+      <label>Project Title</label>
+      <input id="projectTitle" name="title" type="text">
+      <label>Description</label>
+      <textarea id="projectDesc" name="description"></textarea>
+      <button id="addProjectBtn" type="submit">Add Project</button>
+    </form>
+      <ul id="projectList" class="project-list">
+        {% if projects %}
+        {% for project in projects %}
+          <li><strong>{{ project.title }}</strong>: {{ project.description }}</li>
+        {% endfor %}
+        {% endif %}
+      </ul>
+  </section>
+
+  <!-- VERIFICATION -->
+  <section class="tab-content" id="verification">
+    <label>Upload ID</label>
+    <input id="idUpload" type="file">
+    <label>Upload Portfolio</label>
+    <input id="portfolioUpload" type="file">
+    <button id="submitVerificationBtn">Submit Verification</button>
+  </section>
+
+  <!-- STATUS -->
+  <section class="tab-content" id="status">
+    <p>Your verification status: <strong id="verificationStatus">
+      {% if current_user.verified %}
+              Verified    
+          {% else %}
+            Pending
+          {% endif %}
+    </strong></p>
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="tab-content" id="settings">
+    <div class="settings-row">
+      <label><input type="checkbox" id="notificationsToggle"> Enable Notifications</label>
+      <label><input type="checkbox" id="darkModeToggle"> Dark Mode</label>
+    </div>
+  </section>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock script %}

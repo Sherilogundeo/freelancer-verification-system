@@ -1,0 +1,50 @@
+
+{% extends 'layout.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+{% endblock style %}
+
+{% block content %}
+  <div class="register-container">
+    <h1>Freelancer Registration</h1>
+    <!-- Display server-side errors -->
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form id="registerForm" method="POST" action="/register">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="username" id="username" name="username" placeholder="Enter your username" required>
+
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+
+    <p class="login-link">
+      Already have an account? <a href="{{ url_for('auth.login') }}">Login</a>
+    </p>
+  </div>
+{% endblock content %}
+
+{% block script %}
+<!-- <script src="{{ url_for('static', filename='js/register.js') }}"></script> -->
+{% endblock script %}

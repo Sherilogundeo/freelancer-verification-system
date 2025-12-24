@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin-login.css') }}">
+{% endblock style %}
+
+{% block content %}
+  <div class="login-container">
+    <h1>Admin Login</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form id="adminLoginForm" method="post" action="/admin-login">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <p class="back-link">
+      <a href="{{ url_for('auth.login') }}">← Back to Freelancer Login</a>
+    </p>
+  </div>
+
+{% endblock content %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/admin-login.js') }}.js"></script>
+{% endblock script %}

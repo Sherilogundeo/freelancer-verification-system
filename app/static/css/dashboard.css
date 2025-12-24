@@ -1,0 +1,182 @@
+/* DASHBOARD CSS - #003366 Buttons, Profile Pic in Circle, Grey/White Sections */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+  display: flex;
+  height: 100vh;
+}
+
+body.dark {
+  background: #003366;
+  color: #ffffff;
+}
+
+.sidebar {
+  width: 240px;
+  background: #003366;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 3px 0 15px rgba(0,0,0,0.3);
+}
+
+.logo {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.side-btn, .logout-btn, .edit-btn, #saveProfileBtn, .cancel-btn, #addProjectBtn, #submitVerificationBtn {
+  background: #003366;
+  border: none;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 8px;
+  text-align: left;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.side-btn:hover, .logout-btn:hover, .edit-btn:hover, #saveProfileBtn:hover, .cancel-btn:hover, #addProjectBtn:hover, #submitVerificationBtn:hover {
+  background: #1e90ff;
+}
+
+.side-btn.active {
+  background: #1e90ff;
+}
+
+.logout-btn {
+  margin-top: auto;
+}
+
+.main {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.main.dark {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.profile-box {
+  background: #e6e6e6;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #003366;
+  object-fit: cover;
+}
+
+.add-photo-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,51,102,0.6);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.profile-photo-container:hover .add-photo-label {
+  opacity: 1;
+}
+
+.edit-btn, #saveProfileBtn, .cancel-btn, #addProjectBtn, #submitVerificationBtn {
+  padding: 10px 16px;
+  background: #003366;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.edit-btn:hover, #saveProfileBtn:hover, .cancel-btn:hover, #addProjectBtn:hover, #submitVerificationBtn:hover {
+  background: #1e90ff;
+}
+
+.edit-box {
+  margin-top: 20px;
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.hidden { display: none; }
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.project-list li {
+  background: #d9d9d9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+  list-style: none;
+}
+
+.settings-row {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+#settings label {
+  font-size: 16px;
+}
