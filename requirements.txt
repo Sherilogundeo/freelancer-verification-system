@@ -6,3 +6,5 @@ Flask-Mail
 dotenv
 gunicorn
 Pillow
+# others
+psycopg2-binary
