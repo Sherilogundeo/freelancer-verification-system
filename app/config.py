@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env
 load_dotenv()
 
-database_url = os.getenv('POSTGRES_URL')
+database_url = os.getenv('DATABASE_URL')
 if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 
